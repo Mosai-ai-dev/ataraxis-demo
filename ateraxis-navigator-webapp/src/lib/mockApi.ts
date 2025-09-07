@@ -98,16 +98,18 @@ export const getSessionMessages = async (sessionId: string): Promise<Message[]> 
   if (sessionId === 'benefits-inquiry-001') {
     return benefitsSession.session.messages.map(msg => ({
       ...msg,
+      type: msg.type as "user" | "ai" | "action" | "system",
       timestamp: new Date(msg.timestamp)
-    }));
+    })) as Message[];
   }
   
   if (sessionId === 'payroll-discrepancy-002') {
     return payrollSession.session.messages.map(msg => ({
       ...msg,
+      type: msg.type as "user" | "ai" | "action" | "system",
       timestamp: new Date(msg.timestamp),
       slaStatus: msg.slaStatus // Include SLA status if present
-    }));
+    })) as Message[];
   }
   
   // Return empty array for other sessions for now
