@@ -44,29 +44,46 @@ An AI-powered support agent that automates high-volume, repetitive navigator tas
 
 ## System Boundaries
 
-### In Scope - Phase 1.a (Foundation)
-- [x] FAQ knowledge base (top 20 queries)
-- [x] Email response automation for FAQs
-- [x] Text message automation via Podium
-- [x] Pro HRIS read-only data access
-- [x] Jira ticket creation for escalations
-- [x] Basic monitoring and metrics
+### In Scope
 
-### In Scope - Phase 1.b (Expansion)
-- [x] Navigator Assistant Agent interface
-- [x] RingCentral voicemail processing (transcription only)
-- [x] Automated Jira ticket categorization
-- [x] Limited benefits support
-- [x] Teams integration for warm handoffs (text/email only)
+#### Core AI Capabilities
+- [x] Natural language processing for chat-based interactions
+- [x] Agentic framework with autonomous workflow execution
+- [x] Multi-agent orchestration for complex tasks
+- [x] Context-aware conversation management
+- [x] Supervised learning from navigator feedback
 
-### In Scope - Phase 1.c (Optimization)
-- [x] Continuous improvement framework
-- [x] Navigator feedback integration
-- [x] Performance monitoring and reporting
+#### Communication Channels
+- [x] Text/SMS messaging via Podium API
+- [x] Email handling through Microsoft Exchange
+- [x] Internal team communication via Microsoft Teams
+- [x] Voicemail transcription from RingCentral
+- [x] Web-based chat interface
+
+#### System Integrations
+- [x] Pro HRIS data access (read-only via web scraping)
+- [x] CRM system for team assignments
+- [x] Jira ticket creation and routing
+- [x] SSO authentication for secure access
+- [x] Webhook support for real-time updates
+
+#### Workflow Automation
+- [x] FAQ response automation
+- [x] Employee inquiry routing
+- [x] Data lookup and retrieval
+- [x] Notification management across channels
+- [x] Escalation handling to navigators
+- [x] Basic onboarding support workflows
+
+#### User Interfaces
+- [x] Navigator chat interface with session management
+- [x] Admin dashboard for configuration and monitoring
+- [x] Audit trail and feedback collection
+- [x] Workflow visualization and management
+- [x] SLA monitoring and alerts
 
 ### Out of Scope
-- [x] Voice call handling (all phases)
-- [x] Voice-based warm transfers        <---- Add back in 
+- [x] Direct voice call handling
 - [x] Pre-boarding workflow automation
 - [x] Direct write access to Pro HRIS
 - [x] Multi-language support (beyond English)
@@ -74,7 +91,8 @@ An AI-powered support agent that automates high-volume, repetitive navigator tas
 - [x] Sensitive medical data handling
 - [x] Direct payroll modifications
 - [x] Performance review processes
-- [x] Termination workflows
+- [x] Complex termination workflows
+- [x] Real-time voice transcription
 
 ## Key Requirements
 
