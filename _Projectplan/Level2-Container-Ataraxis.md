@@ -1,5 +1,3 @@
-# POTENTIALLY MISSING: COMPLIANCE/PII/HIPPA layer to make sure no security leak happens
-
 # Level 2: Container Diagram
 
 ## System: Ataraxis AI Navigator Assistant
