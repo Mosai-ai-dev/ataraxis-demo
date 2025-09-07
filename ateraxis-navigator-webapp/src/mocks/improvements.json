@@ -1,0 +1,308 @@
+{
+  "interactions": [
+    {
+      "id": "int-001",
+      "timestamp": "2024-01-15T10:30:00Z",
+      "duration": "4m 32s",
+      "user": {
+        "name": "Navigator Alice",
+        "role": "HR Specialist"
+      },
+      "employee": {
+        "name": "John Smith",
+        "company": "TechCorp"
+      },
+      "type": "chat",
+      "status": "successful",
+      "outcome": "401k question resolved, documentation sent",
+      "decisions": [
+        {
+          "id": "dec-001",
+          "type": "routing",
+          "description": "Identified as benefits inquiry",
+          "confidence": 95,
+          "outcome": "correct"
+        },
+        {
+          "id": "dec-002",
+          "type": "response",
+          "description": "Provided 401k contribution limits",
+          "confidence": 88,
+          "outcome": "correct"
+        }
+      ]
+    },
+    {
+      "id": "int-002",
+      "timestamp": "2024-01-15T11:15:00Z",
+      "duration": "7m 18s",
+      "user": {
+        "name": "Navigator Bob",
+        "role": "Payroll Specialist"
+      },
+      "employee": {
+        "name": "Sarah Johnson",
+        "company": "BuildRight"
+      },
+      "type": "text",
+      "status": "escalated",
+      "outcome": "Complex payroll issue, escalated to lead",
+      "decisions": [
+        {
+          "id": "dec-003",
+          "type": "routing",
+          "description": "Routed to payroll specialist",
+          "confidence": 92,
+          "outcome": "correct"
+        },
+        {
+          "id": "dec-004",
+          "type": "escalation",
+          "description": "Escalated after 2 hour SLA",
+          "confidence": 100,
+          "outcome": "correct",
+          "requiresReview": true
+        }
+      ]
+    },
+    {
+      "id": "int-003",
+      "timestamp": "2024-01-15T14:00:00Z",
+      "duration": "2m 45s",
+      "user": {
+        "name": "Navigator Carol",
+        "role": "HR Specialist"
+      },
+      "employee": {
+        "name": "Mike Chen",
+        "company": "Global Tech"
+      },
+      "type": "email",
+      "status": "partial",
+      "outcome": "PTO balance provided, but calculation error detected",
+      "decisions": [
+        {
+          "id": "dec-005",
+          "type": "response",
+          "description": "Calculated PTO balance",
+          "confidence": 72,
+          "outcome": "incorrect",
+          "requiresReview": true,
+          "reasoning": "Failed to account for carryover hours"
+        }
+      ]
+    }
+  ],
+  "aiDecisions": [
+    {
+      "id": "dec-001",
+      "timestamp": "2024-01-15T10:30:00Z",
+      "type": "routing",
+      "description": "Identified benefits inquiry from keywords: 401k, contribution, match",
+      "confidence": 95,
+      "reasoning": "Message contained 3 high-confidence benefits keywords",
+      "outcome": "correct",
+      "requiresReview": false,
+      "systemsAccessed": ["Pro HRIS", "Benefits Portal"],
+      "dataUsed": {
+        "keywords": ["401k", "contribution", "match"],
+        "employeeStatus": "Active",
+        "benefitsEligible": true
+      }
+    },
+    {
+      "id": "dec-004",
+      "timestamp": "2024-01-15T13:15:00Z",
+      "type": "escalation",
+      "description": "Auto-escalated to department lead after 2-hour SLA breach",
+      "confidence": 100,
+      "reasoning": "No response from assigned specialist within SLA window",
+      "outcome": "correct",
+      "requiresReview": true,
+      "systemsAccessed": ["Teams", "SLA Monitor"],
+      "dataUsed": {
+        "slaTimer": "2:00:15",
+        "assignedTo": "Bob Johnson",
+        "escalatedTo": "Lead HR"
+      },
+      "feedback": {
+        "id": "fb-001",
+        "submittedBy": "Admin Dave",
+        "submittedAt": "2024-01-15T16:00:00Z",
+        "rating": "correct",
+        "comments": "Proper escalation procedure followed",
+        "status": "acknowledged"
+      }
+    },
+    {
+      "id": "dec-005",
+      "timestamp": "2024-01-15T14:00:00Z",
+      "type": "response",
+      "description": "Calculated PTO balance for employee",
+      "confidence": 72,
+      "reasoning": "Standard accrual calculation applied",
+      "outcome": "incorrect",
+      "requiresReview": true,
+      "systemsAccessed": ["Pro HRIS"],
+      "dataUsed": {
+        "accrualRate": "1.5 days/month",
+        "monthsEmployed": 8,
+        "ptoUsed": 3
+      },
+      "feedback": {
+        "id": "fb-002",
+        "submittedBy": "Admin Eve",
+        "submittedAt": "2024-01-15T15:30:00Z",
+        "rating": "incorrect",
+        "comments": "Missed 5-day carryover from previous year",
+        "suggestedCorrection": "Add carryover check to PTO calculation logic",
+        "status": "pending",
+        "impactScore": 8
+      }
+    }
+  ],
+  "metrics": {
+    "overview": [
+      {
+        "name": "Total Interactions",
+        "value": 1247,
+        "unit": "today",
+        "trend": "up",
+        "changePercent": 12
+      },
+      {
+        "name": "Decision Accuracy",
+        "value": 87.3,
+        "unit": "%",
+        "trend": "up",
+        "changePercent": 2.1
+      },
+      {
+        "name": "Avg Response Time",
+        "value": 3.2,
+        "unit": "minutes",
+        "trend": "down",
+        "changePercent": -15
+      },
+      {
+        "name": "Escalation Rate",
+        "value": 8.5,
+        "unit": "%",
+        "trend": "down",
+        "changePercent": -3
+      }
+    ],
+    "byCategory": {
+      "benefits": { "accuracy": 92, "volume": 342, "avgTime": 2.8 },
+      "payroll": { "accuracy": 85, "volume": 278, "avgTime": 4.1 },
+      "pto": { "accuracy": 78, "volume": 189, "avgTime": 2.5 },
+      "general": { "accuracy": 89, "volume": 438, "avgTime": 3.5 }
+    },
+    "slaCompliance": {
+      "met": 1156,
+      "warning": 67,
+      "breached": 24,
+      "complianceRate": 92.7
+    }
+  },
+  "learningQueue": [
+    {
+      "id": "learn-001",
+      "type": "pattern",
+      "source": "interaction",
+      "submittedAt": "2024-01-15T09:00:00Z",
+      "status": "pending",
+      "content": {
+        "problem": "Employee asks about FMLA eligibility",
+        "solution": "Check employment duration (12 months), hours worked (1,250), and provide FMLA forms link",
+        "category": "Leave Management",
+        "confidence": 85
+      }
+    },
+    {
+      "id": "learn-002",
+      "type": "response",
+      "source": "feedback",
+      "submittedAt": "2024-01-15T10:30:00Z",
+      "submittedBy": "Navigator Alice",
+      "status": "pending",
+      "content": {
+        "problem": "HSA contribution limit question for family coverage",
+        "solution": "$8,300 for 2024 family coverage, plus $1,000 catch-up if 55+",
+        "category": "Benefits",
+        "confidence": 95
+      }
+    },
+    {
+      "id": "learn-003",
+      "type": "workflow",
+      "source": "manual",
+      "submittedAt": "2024-01-15T11:00:00Z",
+      "submittedBy": "Admin Dave",
+      "status": "approved",
+      "content": {
+        "problem": "New hire missing system access after 48 hours",
+        "solution": "Auto-escalate to IT if Pro HRIS account not active within 24 hours of start date",
+        "category": "Onboarding",
+        "confidence": 90
+      },
+      "reviewedBy": "Lead Admin",
+      "reviewedAt": "2024-01-15T11:30:00Z",
+      "comments": "Good catch, implementing in next update"
+    },
+    {
+      "id": "learn-004",
+      "type": "knowledge",
+      "source": "interaction",
+      "submittedAt": "2024-01-15T12:00:00Z",
+      "status": "modified",
+      "content": {
+        "problem": "Bereavement leave policy for grandparents",
+        "solution": "3 days paid leave for grandparents, 5 days for immediate family",
+        "category": "Leave Policy",
+        "confidence": 88
+      },
+      "reviewedBy": "HR Manager",
+      "reviewedAt": "2024-01-15T13:00:00Z",
+      "comments": "Corrected to match updated policy: 5 days for all"
+    },
+    {
+      "id": "learn-005",
+      "type": "pattern",
+      "source": "interaction",
+      "submittedAt": "2024-01-15T14:00:00Z",
+      "status": "rejected",
+      "content": {
+        "problem": "Employee terminated, asking about COBRA",
+        "solution": "Auto-send COBRA information packet",
+        "category": "Benefits",
+        "confidence": 70
+      },
+      "reviewedBy": "Compliance Officer",
+      "reviewedAt": "2024-01-15T14:30:00Z",
+      "comments": "Cannot auto-send without termination verification"
+    }
+  ],
+  "feedback": {
+    "pending": 12,
+    "acknowledged": 45,
+    "implemented": 23,
+    "total": 80,
+    "impactful": [
+      {
+        "id": "fb-high-001",
+        "decision": "PTO calculation logic",
+        "impact": 9,
+        "status": "implemented",
+        "result": "Reduced PTO errors by 65%"
+      },
+      {
+        "id": "fb-high-002",
+        "decision": "Benefits enrollment routing",
+        "impact": 8,
+        "status": "pending",
+        "result": "Expected to improve routing accuracy"
+      }
+    ]
+  }
+}

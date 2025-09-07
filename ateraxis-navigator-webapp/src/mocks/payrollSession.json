@@ -1,0 +1,298 @@
+{
+  "session": {
+    "id": "payroll-discrepancy-002",
+    "title": "Payroll Discrepancy - Alex Rivera",
+    "createdAt": "2024-01-15T14:15:00Z",
+    "updatedAt": "2024-01-15T14:45:00Z",
+    "messages": [
+      {
+        "id": "msg-101",
+        "sessionId": "payroll-discrepancy-002",
+        "type": "user",
+        "content": "I have a Podium text from Alex Rivera at BuildRight Construction about missing overtime pay. He says he worked 55 hours last week but only got paid for 40.",
+        "timestamp": "2024-01-15T14:15:00Z"
+      },
+      {
+        "id": "msg-102",
+        "sessionId": "payroll-discrepancy-002",
+        "type": "ai",
+        "content": "I'll look up Alex Rivera's information and check the Podium message queue for his text.",
+        "timestamp": "2024-01-15T14:15:01Z",
+        "systemActions": [
+          {
+            "id": "sys-101",
+            "type": "system_access",
+            "system": "Podium",
+            "action": "Searching text messages",
+            "data": {
+              "searchQuery": "Alex Rivera overtime",
+              "found": 1,
+              "messageId": "POD-2024-7823",
+              "sender": "+1-555-0142",
+              "received": "2024-01-15T14:05:00Z",
+              "message": "Hi, this is Alex Rivera, employee ID BR-4521. I worked 55 hours last week (Jan 8-12) but my paycheck only shows 40 hours. My manager approved the overtime. Can someone help?"
+            },
+            "isCollapsed": false
+          },
+          {
+            "id": "sys-102",
+            "type": "data_retrieval",
+            "system": "Pro HRIS",
+            "action": "Retrieved employee information",
+            "data": {
+              "employeeId": "BR-4521",
+              "name": "Alex Rivera",
+              "company": "BuildRight Construction",
+              "department": "Field Operations",
+              "manager": "Tom Bradley",
+              "hourlyRate": "$32.50",
+              "overtimeRate": "$48.75",
+              "status": "Active"
+            },
+            "isCollapsed": true
+          }
+        ]
+      },
+      {
+        "id": "msg-103",
+        "sessionId": "payroll-discrepancy-002",
+        "type": "ai",
+        "content": "Found Alex's message in Podium. He's reporting 15 hours of missing overtime pay from last week. Let me check his timesheet and find the right payroll specialist for BuildRight Construction.",
+        "timestamp": "2024-01-15T14:15:03Z",
+        "systemActions": [
+          {
+            "id": "sys-103",
+            "type": "data_retrieval",
+            "system": "Pro HRIS",
+            "action": "Timesheet verification",
+            "data": {
+              "weekOf": "2024-01-08",
+              "submittedHours": {
+                "Monday": 11,
+                "Tuesday": 11,
+                "Wednesday": 11,
+                "Thursday": 11,
+                "Friday": 11,
+                "total": 55
+              },
+              "approvedBy": "Tom Bradley",
+              "approvalDate": "2024-01-12T17:30:00Z",
+              "payrollProcessed": {
+                "regularHours": 40,
+                "overtimeHours": 0,
+                "status": "ERROR: Overtime not captured"
+              }
+            },
+            "isCollapsed": false
+          },
+          {
+            "id": "sys-104",
+            "type": "data_retrieval",
+            "system": "CRM",
+            "action": "Finding payroll specialist",
+            "data": {
+              "company": "BuildRight Construction",
+              "payrollSpecialist": "Marcus Johnson",
+              "backupSpecialist": "Sarah Kim",
+              "teamsHandle": "@marcus.johnson",
+              "availability": "Checking..."
+            },
+            "isCollapsed": true
+          }
+        ]
+      },
+      {
+        "id": "msg-104",
+        "sessionId": "payroll-discrepancy-002",
+        "type": "ai",
+        "content": "Confirmed: Alex worked 55 approved hours but was only paid for 40. The overtime wasn't processed due to a system error. I'm assigning this to Marcus Johnson (BuildRight's payroll specialist) and will warm transfer via Teams.",
+        "timestamp": "2024-01-15T14:15:05Z",
+        "systemActions": [
+          {
+            "id": "sys-105",
+            "type": "action_execution",
+            "system": "Podium",
+            "action": "Assigning conversation to specialist",
+            "data": {
+              "messageId": "POD-2024-7823",
+              "assignedTo": "Marcus Johnson",
+              "priority": "High",
+              "slaTimer": "Started at 14:15:05",
+              "dueBy": "16:45:05 (2.5 hours)"
+            },
+            "isCollapsed": false
+          },
+          {
+            "id": "sys-106",
+            "type": "action_execution",
+            "system": "Teams",
+            "action": "Initiating warm transfer",
+            "data": {
+              "to": "@marcus.johnson",
+              "messageThread": [
+                {
+                  "from": "AI Assistant",
+                  "time": "14:15:06",
+                  "message": "Hi Marcus, I have an urgent payroll issue for Alex Rivera at BuildRight. He's missing 15 hours of overtime pay from last week. Are you available to handle this?"
+                },
+                {
+                  "from": "Marcus Johnson",
+                  "time": "14:15:45",
+                  "message": "Yes, I'm here. What's the situation?"
+                },
+                {
+                  "from": "AI Assistant",
+                  "time": "14:15:47",
+                  "message": "Alex Rivera (BR-4521) worked 55 hours last week (Jan 8-12), all approved by Tom Bradley. Payroll only processed 40 hours. The overtime wasn't captured due to a system error. He texted Podium at 14:05 today. I've assigned the conversation to you."
+                },
+                {
+                  "from": "Marcus Johnson",
+                  "time": "14:16:15",
+                  "message": "I see it in my Podium queue now. That's a $731.25 discrepancy. I'll process an off-cycle payment today."
+                },
+                {
+                  "from": "AI Assistant",
+                  "time": "14:16:17",
+                  "message": "Perfect. SLA timer is running - we have until 16:45 to respond to Alex. I'll monitor the 2.5-hour deadline."
+                },
+                {
+                  "from": "Marcus Johnson",
+                  "time": "14:16:30",
+                  "message": "Got it. I'll message him now and get this corrected. Should be in his account by Thursday."
+                }
+              ]
+            },
+            "isCollapsed": false
+          }
+        ]
+      },
+      {
+        "id": "msg-105",
+        "sessionId": "payroll-discrepancy-002",
+        "type": "ai",
+        "content": "✅ Successfully transferred to Marcus Johnson. He's aware of the $731.25 overtime discrepancy and will process an off-cycle payment today. He's messaging Alex now via Podium.",
+        "timestamp": "2024-01-15T14:16:35Z",
+        "slaStatus": {
+          "startTime": "14:15:05",
+          "currentTime": "14:16:35",
+          "timeElapsed": "1 minute 30 seconds",
+          "timeRemaining": "2 hours 28 minutes",
+          "status": "On Track"
+        }
+      },
+      {
+        "id": "msg-106",
+        "sessionId": "payroll-discrepancy-002",
+        "type": "user",
+        "content": "Great, can you monitor this and make sure Marcus responds within the SLA?",
+        "timestamp": "2024-01-15T14:17:00Z"
+      },
+      {
+        "id": "msg-107",
+        "sessionId": "payroll-discrepancy-002",
+        "type": "ai",
+        "content": "I'll monitor the SLA timer and send automatic reminders. Setting up monitoring now.",
+        "timestamp": "2024-01-15T14:17:01Z",
+        "systemActions": [
+          {
+            "id": "sys-107",
+            "type": "action_execution",
+            "system": "SLA Monitor",
+            "action": "Configuring response monitoring",
+            "data": {
+              "ticket": "POD-2024-7823",
+              "assignee": "Marcus Johnson",
+              "reminders": [
+                {
+                  "at": "15:45:05",
+                  "status": "Warning - 1 hour remaining",
+                  "action": "Teams message to Marcus"
+                },
+                {
+                  "at": "16:15:05",
+                  "status": "Urgent - 30 minutes remaining",
+                  "action": "Teams message to Marcus + Sarah Kim (backup)"
+                },
+                {
+                  "at": "16:45:05",
+                  "status": "SLA Breach",
+                  "action": "Escalate to Department Lead"
+                }
+              ],
+              "currentStatus": "Monitoring active"
+            },
+            "isCollapsed": true
+          }
+        ]
+      },
+      {
+        "id": "msg-108",
+        "sessionId": "payroll-discrepancy-002",
+        "type": "system",
+        "content": "Update: Marcus has responded to Alex",
+        "timestamp": "2024-01-15T14:25:00Z",
+        "systemActions": [
+          {
+            "id": "sys-108",
+            "type": "data_retrieval",
+            "system": "Podium",
+            "action": "Response detected",
+            "data": {
+              "responseTime": "14:24:45",
+              "slaTime": "9 minutes 40 seconds",
+              "specialist": "Marcus Johnson",
+              "messageSent": "Hi Alex, I found the issue with your overtime. Your manager's approval didn't sync properly with payroll. I'm processing an off-cycle payment now for $731.25 (15 hours OT). It will be in your account by Thursday morning. I've also fixed the sync issue to prevent this from happening again.",
+              "status": "✅ SLA Met"
+            },
+            "isCollapsed": false
+          }
+        ]
+      },
+      {
+        "id": "msg-109",
+        "sessionId": "payroll-discrepancy-002",
+        "type": "ai",
+        "content": "✅ SLA Successfully Met! Marcus responded to Alex in under 10 minutes. The overtime payment of $731.25 is being processed and will be in Alex's account by Thursday. The sync issue between manager approvals and payroll has also been fixed.",
+        "timestamp": "2024-01-15T14:25:05Z",
+        "slaStatus": {
+          "startTime": "14:15:05",
+          "responseTime": "14:24:45",
+          "totalTime": "9 minutes 40 seconds",
+          "slaTarget": "2.5 hours",
+          "status": "✅ COMPLETED - Well within SLA"
+        }
+      },
+      {
+        "id": "msg-110",
+        "sessionId": "payroll-discrepancy-002",
+        "type": "action",
+        "content": "Creating follow-up items to ensure resolution and prevent future issues.",
+        "timestamp": "2024-01-15T14:25:10Z",
+        "actions": [
+          {
+            "id": "action-101",
+            "type": "jira",
+            "description": "Create tracking ticket for overtime payment",
+            "preview": "Ticket: PAYROLL-8834\nTitle: Off-cycle overtime payment - Alex Rivera\nAmount: $731.25\nDue: Thursday Jan 18\nAssigned: Marcus Johnson",
+            "requiresApproval": false
+          },
+          {
+            "id": "action-102",
+            "type": "email",
+            "description": "Send confirmation email to Alex",
+            "preview": "Subject: Overtime Payment Confirmation\n\nDear Alex,\n\nYour missing overtime payment has been processed:\n- Amount: $731.25 (15 hours @ $48.75/hr)\n- Expected deposit: Thursday, January 18\n- Reference: PAYROLL-8834\n\nWe apologize for the error and have fixed the system issue.",
+            "requiresApproval": true
+          }
+        ]
+      },
+      {
+        "id": "msg-111",
+        "sessionId": "payroll-discrepancy-002",
+        "type": "ai",
+        "content": "Case resolved successfully! Alex's overtime issue was identified, assigned, and resolved in under 10 minutes. The warm transfer to Marcus Johnson worked perfectly, and we're well within our SLA targets. Is there anything else you need help with regarding this case?",
+        "timestamp": "2024-01-15T14:25:30Z",
+        "status": "completed"
+      }
+    ]
+  }
+}

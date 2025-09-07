@@ -1,0 +1,321 @@
+{
+  "activeWorkflows": [
+    {
+      "id": "wf-001",
+      "workflowType": "text_inquiry_response",
+      "name": "Text Message Inquiry - Jessica Martinez",
+      "status": "waiting",
+      "startedAt": "2024-01-15T15:30:00Z",
+      "updatedAt": "2024-01-15T15:35:00Z",
+      "currentStep": "wait_specialist_response",
+      "steps": [
+        {
+          "id": "step-1",
+          "name": "Receive Podium Text",
+          "type": "system_action",
+          "status": "completed",
+          "timestamp": "2024-01-15T15:30:00Z",
+          "duration": "2s",
+          "data": {
+            "sender": "+1-555-0198",
+            "message": "I need to update my direct deposit information"
+          }
+        },
+        {
+          "id": "step-2",
+          "name": "Employee Lookup",
+          "type": "system_action",
+          "status": "completed",
+          "timestamp": "2024-01-15T15:30:02Z",
+          "duration": "1.5s",
+          "data": {
+            "system": "Pro HRIS",
+            "employee": "Jessica Martinez",
+            "company": "Global Tech Inc"
+          }
+        },
+        {
+          "id": "step-3",
+          "name": "Route to Specialist",
+          "type": "decision",
+          "status": "completed",
+          "timestamp": "2024-01-15T15:30:04Z",
+          "data": {
+            "decision": "Payroll specialist required",
+            "specialist": "David Chen"
+          }
+        },
+        {
+          "id": "step-4",
+          "name": "Teams Notification",
+          "type": "system_action",
+          "status": "completed",
+          "timestamp": "2024-01-15T15:30:05Z",
+          "data": {
+            "sentTo": "@david.chen",
+            "priority": "Normal"
+          }
+        },
+        {
+          "id": "step-5",
+          "name": "Wait for Response",
+          "type": "wait",
+          "status": "waiting",
+          "timestamp": "2024-01-15T15:30:06Z"
+        }
+      ],
+      "trigger": {
+        "type": "event",
+        "source": "Podium",
+        "data": {
+          "messageId": "POD-2024-8901"
+        }
+      },
+      "waitingFor": {
+        "type": "teams_response",
+        "description": "Waiting for David Chen to respond",
+        "deadline": "2024-01-15T17:30:00Z"
+      },
+      "context": {
+        "employee": "Jessica Martinez",
+        "company": "Global Tech Inc",
+        "messageId": "POD-2024-8901"
+      }
+    },
+    {
+      "id": "wf-002",
+      "workflowType": "voicemail_processing",
+      "name": "Voicemail Processing - Tom Bradley",
+      "status": "active",
+      "startedAt": "2024-01-15T16:00:00Z",
+      "updatedAt": "2024-01-15T16:02:00Z",
+      "currentStep": "parse_transcript",
+      "steps": [
+        {
+          "id": "step-1",
+          "name": "Receive Voicemail",
+          "type": "system_action",
+          "status": "completed",
+          "timestamp": "2024-01-15T16:00:00Z",
+          "data": {
+            "source": "RingCentral",
+            "duration": "1:45",
+            "from": "+1-555-0234"
+          }
+        },
+        {
+          "id": "step-2",
+          "name": "Transcription",
+          "type": "system_action",
+          "status": "completed",
+          "timestamp": "2024-01-15T16:01:00Z",
+          "data": {
+            "confidence": "95%",
+            "language": "English"
+          }
+        },
+        {
+          "id": "step-3",
+          "name": "Parse & Analyze",
+          "type": "system_action",
+          "status": "active",
+          "timestamp": "2024-01-15T16:02:00Z"
+        },
+        {
+          "id": "step-4",
+          "name": "Route Message",
+          "type": "decision",
+          "status": "pending"
+        },
+        {
+          "id": "step-5",
+          "name": "Send Response",
+          "type": "system_action",
+          "status": "pending"
+        }
+      ],
+      "trigger": {
+        "type": "event",
+        "source": "Exchange",
+        "data": {
+          "emailId": "EX-2024-7823"
+        }
+      },
+      "context": {
+        "employee": "Tom Bradley",
+        "company": "BuildRight Construction"
+      }
+    },
+    {
+      "id": "wf-003",
+      "workflowType": "sla_escalation",
+      "name": "SLA Warning - Karen White Response",
+      "status": "waiting",
+      "startedAt": "2024-01-15T14:00:00Z",
+      "updatedAt": "2024-01-15T15:30:00Z",
+      "currentStep": "warning_sent",
+      "steps": [
+        {
+          "id": "step-1",
+          "name": "Message Received",
+          "type": "system_action",
+          "status": "completed",
+          "timestamp": "2024-01-15T14:00:00Z",
+          "data": {
+            "from": "Karen White",
+            "topic": "401k contribution issue"
+          }
+        },
+        {
+          "id": "step-2",
+          "name": "Assigned to Specialist",
+          "type": "system_action",
+          "status": "completed",
+          "timestamp": "2024-01-15T14:00:30Z",
+          "data": {
+            "specialist": "Michael Torres"
+          }
+        },
+        {
+          "id": "step-3",
+          "name": "1.5 Hour Warning",
+          "type": "system_action",
+          "status": "completed",
+          "timestamp": "2024-01-15T15:30:00Z",
+          "data": {
+            "warningType": "Teams message",
+            "sentTo": "@michael.torres"
+          }
+        },
+        {
+          "id": "step-4",
+          "name": "Wait for Action",
+          "type": "wait",
+          "status": "waiting"
+        },
+        {
+          "id": "step-5",
+          "name": "2 Hour Escalation",
+          "type": "decision",
+          "status": "pending"
+        }
+      ],
+      "trigger": {
+        "type": "event",
+        "source": "SLA Monitor"
+      },
+      "waitingFor": {
+        "type": "sla_timer",
+        "description": "30 minutes until escalation to lead",
+        "deadline": "2024-01-15T16:00:00Z"
+      },
+      "context": {
+        "employee": "Karen White",
+        "ticketId": "HELP-9012"
+      }
+    }
+  ],
+  "eventWorkflows": [
+    {
+      "id": "evt-001",
+      "type": "podium_text",
+      "source": "Podium",
+      "timestamp": "2024-01-15T16:15:00Z",
+      "data": {
+        "sender": "+1-555-0345",
+        "message": "Hi, I haven't received my W2 yet",
+        "employeeName": "Robert Kim"
+      },
+      "status": "pending",
+      "suggestedWorkflow": "text_inquiry_response"
+    },
+    {
+      "id": "evt-002",
+      "type": "email_received",
+      "source": "Exchange",
+      "timestamp": "2024-01-15T16:10:00Z",
+      "data": {
+        "from": "lisa.chen@techstart.com",
+        "subject": "Urgent: Benefits enrollment question",
+        "priority": "High"
+      },
+      "status": "pending",
+      "suggestedWorkflow": "email_inquiry_response"
+    },
+    {
+      "id": "evt-003",
+      "type": "sla_breach",
+      "source": "SLA Monitor",
+      "timestamp": "2024-01-15T16:05:00Z",
+      "data": {
+        "originalMessage": "POD-2024-8756",
+        "breachTime": "2.1 hours",
+        "assignedTo": "Jennifer Adams"
+      },
+      "status": "pending",
+      "suggestedWorkflow": "leadership_escalation"
+    }
+  ],
+  "availableWorkflows": [
+    {
+      "id": "tpl-001",
+      "name": "Navigator Assistant Request",
+      "description": "AI assistant helps navigator with employee inquiry",
+      "category": "support",
+      "triggerType": "manual",
+      "requiredInputs": ["employee_name", "inquiry_type"],
+      "estimatedDuration": "2-5 minutes",
+      "icon": "Bot"
+    },
+    {
+      "id": "tpl-002",
+      "name": "Warm Transfer",
+      "description": "Transfer employee to specialist with context via Teams",
+      "category": "communication",
+      "triggerType": "manual",
+      "requiredInputs": ["employee_name", "specialist_name", "reason"],
+      "estimatedDuration": "1-3 minutes",
+      "icon": "Users"
+    },
+    {
+      "id": "tpl-003",
+      "name": "Employee Data Lookup",
+      "description": "Search Pro HRIS and CRM for employee information",
+      "category": "data",
+      "triggerType": "both",
+      "requiredInputs": ["employee_identifier"],
+      "estimatedDuration": "30 seconds",
+      "icon": "Search"
+    },
+    {
+      "id": "tpl-004",
+      "name": "Knowledge Base Update",
+      "description": "Add new solution pattern to knowledge base",
+      "category": "support",
+      "triggerType": "manual",
+      "requiredInputs": ["problem", "solution", "category"],
+      "estimatedDuration": "1-2 minutes",
+      "icon": "BookOpen"
+    },
+    {
+      "id": "tpl-005",
+      "name": "Audit AI Decision",
+      "description": "Review and validate AI response to employee",
+      "category": "support",
+      "triggerType": "manual",
+      "requiredInputs": ["decision_id"],
+      "estimatedDuration": "2-3 minutes",
+      "icon": "CheckCircle"
+    },
+    {
+      "id": "tpl-006",
+      "name": "Leadership Escalation",
+      "description": "Escalate unhandled message to department lead",
+      "category": "escalation",
+      "triggerType": "both",
+      "requiredInputs": ["message_id", "assigned_specialist"],
+      "estimatedDuration": "1 minute",
+      "icon": "AlertTriangle"
+    }
+  ]
+}

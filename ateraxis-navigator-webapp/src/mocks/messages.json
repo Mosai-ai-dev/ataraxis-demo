@@ -1,0 +1,58 @@
+{
+  "aiResponses": [
+    "I'll help you with that request right away. Let me check the information for you.",
+    "I understand you need assistance with this. Here's what I can do for you.",
+    "Great question! Based on our records, I have the following information.",
+    "I can definitely help with that. Let me pull up the relevant details.",
+    "Thank you for reaching out. I've analyzed your request and here's my recommendation.",
+    "I see what you're looking for. Let me guide you through this process.",
+    "Based on your inquiry, I've found several options that might help.",
+    "I'll take care of that for you. Here's the current status and next steps."
+  ],
+  "actionSuggestions": [
+    {
+      "type": "podium",
+      "description": "Send message to employee via Podium",
+      "preview": "Hi [Name], I wanted to follow up on your recent inquiry about...",
+      "requiresApproval": true
+    },
+    {
+      "type": "email",
+      "description": "Draft email response",
+      "preview": "Dear [Name], Thank you for your message. Regarding your question about...",
+      "requiresApproval": true
+    },
+    {
+      "type": "teams",
+      "description": "Create Teams notification",
+      "preview": "Quick update: The request from [Name] has been processed...",
+      "requiresApproval": true
+    },
+    {
+      "type": "workflow",
+      "description": "Initiate employee onboarding workflow",
+      "preview": "Starting onboarding process for new employee...",
+      "requiresApproval": true
+    }
+  ],
+  "sampleSessions": [
+    {
+      "id": "session-1",
+      "title": "Benefits Inquiry",
+      "createdAt": "2024-01-15T10:30:00Z",
+      "preview": "Employee asking about health insurance..."
+    },
+    {
+      "id": "session-2",
+      "title": "PTO Request",
+      "createdAt": "2024-01-15T09:15:00Z",
+      "preview": "Vacation request for next month..."
+    },
+    {
+      "id": "session-3",
+      "title": "Payroll Question",
+      "createdAt": "2024-01-14T16:45:00Z",
+      "preview": "Questions about recent paycheck..."
+    }
+  ]
+}

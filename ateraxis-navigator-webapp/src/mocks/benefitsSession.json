@@ -1,0 +1,185 @@
+{
+  "session": {
+    "id": "benefits-inquiry-001",
+    "title": "Employee Benefits - Sarah Johnson",
+    "createdAt": "2024-01-15T09:30:00Z",
+    "updatedAt": "2024-01-15T09:45:00Z",
+    "messages": [
+      {
+        "id": "msg-001",
+        "sessionId": "benefits-inquiry-001",
+        "type": "user",
+        "content": "I need help with Sarah Johnson from TechCorp. She's asking about her health benefits enrollment.",
+        "timestamp": "2024-01-15T09:30:00Z"
+      },
+      {
+        "id": "msg-002",
+        "sessionId": "benefits-inquiry-001",
+        "type": "ai",
+        "content": "I'll look up Sarah Johnson's information and check her benefits enrollment status.",
+        "timestamp": "2024-01-15T09:30:01Z",
+        "systemActions": [
+          {
+            "id": "sys-001",
+            "type": "system_access",
+            "system": "Pro HRIS",
+            "action": "Accessing employee database",
+            "data": {
+              "employeeId": "TC-2024-1892",
+              "name": "Sarah Johnson",
+              "company": "TechCorp Solutions",
+              "department": "Engineering",
+              "status": "Active"
+            },
+            "isCollapsed": false
+          },
+          {
+            "id": "sys-002",
+            "type": "data_retrieval",
+            "system": "Benefits Portal",
+            "action": "Retrieved enrollment information",
+            "data": {
+              "enrollmentPeriod": "2024 Open Enrollment",
+              "status": "In Progress",
+              "deadline": "2024-01-31",
+              "currentPlans": {
+                "medical": "PPO Gold Plan",
+                "dental": "Standard Dental",
+                "vision": "Not Enrolled"
+              }
+            },
+            "isCollapsed": true
+          }
+        ]
+      },
+      {
+        "id": "msg-003",
+        "sessionId": "benefits-inquiry-001",
+        "type": "ai",
+        "content": "I found Sarah Johnson at TechCorp Solutions. She's currently in the middle of open enrollment (deadline Jan 31st). She has an existing PPO Gold Plan and Standard Dental, but hasn't enrolled in vision coverage yet. She appears to be reviewing plan changes. Would you like me to send her information about the available plans?",
+        "timestamp": "2024-01-15T09:30:03Z"
+      },
+      {
+        "id": "msg-004",
+        "sessionId": "benefits-inquiry-001",
+        "type": "user",
+        "content": "Yes, send her a detailed comparison between the PPO Gold and HSA Silver plans. Also check if she has any open tickets.",
+        "timestamp": "2024-01-15T09:31:00Z"
+      },
+      {
+        "id": "msg-005",
+        "sessionId": "benefits-inquiry-001",
+        "type": "ai",
+        "content": "I'll generate a plan comparison and check for any open support tickets.",
+        "timestamp": "2024-01-15T09:31:01Z",
+        "systemActions": [
+          {
+            "id": "sys-003",
+            "type": "data_retrieval",
+            "system": "Benefits Portal",
+            "action": "Generated plan comparison",
+            "data": {
+              "PPO_Gold": {
+                "monthlyPremium": "$450",
+                "deductible": "$500",
+                "outOfPocketMax": "$3,000"
+              },
+              "HSA_Silver": {
+                "monthlyPremium": "$280",
+                "deductible": "$2,000",
+                "outOfPocketMax": "$5,000",
+                "hsaContribution": "$1,500 employer"
+              }
+            },
+            "isCollapsed": true
+          },
+          {
+            "id": "sys-004",
+            "type": "data_retrieval",
+            "system": "Jira",
+            "action": "Retrieved ticket history",
+            "data": {
+              "openTickets": [
+                {
+                  "id": "HELP-8923",
+                  "subject": "FSA reimbursement question",
+                  "status": "Open",
+                  "created": "2024-01-10"
+                }
+              ],
+              "resolvedTickets": [
+                {
+                  "id": "HELP-8701",
+                  "subject": "Dependent verification",
+                  "status": "Resolved"
+                }
+              ]
+            },
+            "isCollapsed": false
+          }
+        ]
+      },
+      {
+        "id": "msg-006",
+        "sessionId": "benefits-inquiry-001",
+        "type": "action",
+        "content": "Sarah has one open ticket (HELP-8923) about FSA reimbursement from January 10th. Her dependent verification was completed successfully last month. I'll send her the benefits comparison email and let her know we'll follow up on the FSA ticket.",
+        "timestamp": "2024-01-15T09:31:02Z",
+        "actions": [
+          {
+            "id": "action-001",
+            "type": "email",
+            "description": "Send benefits comparison email with FSA info",
+            "preview": "Subject: Your 2024 Benefits Enrollment - Action Required by Jan 31\n\nHi Sarah,\n\nHere's the comparison of PPO Gold vs HSA Silver plans you requested...\n\nP.S. I see you have an open ticket about FSA reimbursement. Our benefits team will follow up within 24 hours.",
+            "requiresApproval": true
+          }
+        ]
+      },
+      {
+        "id": "msg-007",
+        "sessionId": "benefits-inquiry-001",
+        "type": "user",
+        "content": "Yes, add that to the email and let her know we'll follow up on the FSA ticket separately",
+        "timestamp": "2024-01-15T09:33:00Z"
+      },
+      {
+        "id": "msg-008",
+        "sessionId": "benefits-inquiry-001",
+        "type": "action",
+        "content": "I've updated the email to include FSA information and will create a follow-up task.",
+        "timestamp": "2024-01-15T09:33:01Z",
+        "actions": [
+          {
+            "id": "action-002",
+            "type": "jira",
+            "description": "Create follow-up task for FSA ticket",
+            "preview": "Task: Follow up on HELP-8923 - FSA reimbursement for Sarah Johnson\nAssigned to: Benefits Team\nDue: Tomorrow",
+            "requiresApproval": true
+          }
+        ],
+        "systemActions": [
+          {
+            "id": "sys-005",
+            "type": "action_execution",
+            "system": "Exchange",
+            "action": "Email sent successfully",
+            "data": {
+              "recipient": "sarah.johnson@techcorp.com",
+              "sentAt": "2024-01-15T09:33:30Z",
+              "trackingId": "MSG-2024-98234"
+            },
+            "isCollapsed": true
+          }
+        ]
+      },
+      {
+        "id": "msg-009",
+        "sessionId": "benefits-inquiry-001",
+        "type": "ai",
+        "content": "Email sent successfully! I've also created a follow-up task for the benefits team to address Sarah's FSA reimbursement question. Is there anything else you need help with regarding Sarah's benefits?",
+        "timestamp": "2024-01-15T09:33:30Z",
+        "status": "completed"
+      }
+    ]
+  }
+}
