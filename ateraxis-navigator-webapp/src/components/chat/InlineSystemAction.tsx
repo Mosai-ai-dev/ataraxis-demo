@@ -44,7 +44,7 @@ export function InlineSystemAction({ action, onRelevanceFeedback }: InlineSystem
     onRelevanceFeedback?.(action.id, type);
   };
   
-  const formatData = (data: any, level = 0): JSX.Element | null => {
+  const formatData = (data: any, level = 0): React.ReactElement | null => {
     if (!data) return null;
     
     if (typeof data === 'string' || typeof data === 'number' || typeof data === 'boolean') {
