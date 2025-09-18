@@ -1,6 +1,8 @@
+# POTENTIALLY MISSING: COMPLIANCE/PII/HIPPA layer to make sure no security leak happens
+
 # Level 2: Container Diagram
 
-## System: Ataraxis AI Navigator Assistant
+## System: Ateraxis AI Navigator Assistant
 
 ## Container Inventory
 
@@ -64,18 +66,7 @@
 | Environment | Purpose |
 |------------|---------|
 | Development | Development and testing |
-| Staging | Pre-production validation |
 | Production | Live system |
-
-### Scaling Strategy
-| Container | Min Instances | Max Instances | Scaling Trigger |
-|-----------|---------------|---------------|-----------------|
-| API Gateway | 2 | 10 | CPU > 70% |
-| Core AI Service | 3 | 20 | Request queue depth |
-| Integration Service | 2 | 10 | Request rate |
-| Workflow Engine | 2 | 8 | Active workflows |
-| SLA Monitor | 1 | 1 | Always running |
-| Learning Engine | 1 | 3 | Feedback backlog |
 
 ## Security Considerations
 
@@ -96,25 +87,26 @@
 
 | Container | Complexity | Estimated Hours | Team Size |
 |-----------|-----------|-----------------|-----------|
-| Navigator UI | High | 320 | 2 Frontend |
-| Admin UI | Medium | 240 | 1 Frontend |
-| API Gateway | Medium | 160 | 1 Backend |
-| Core AI Service (Agentic) | Very High | 560 | 2 AI/Backend |
-| Integration Service (MCP) | High | 400 | 2 Backend |
-| Workflow Engine | High | 240 | 1 Backend |
-| Learning Engine | Medium | 200 | 1 AI/Backend |
-| SLA Monitor | Low | 80 | 1 Backend |
+| Navigator UI | High | 280 | 2 Frontend |
+| Admin UI | Medium | 200 | 1 Frontend |
+| API Gateway | Medium | 120 | 1 Backend |
+| Core AI Service (Agentic) | Very High | 480 | 2 AI/Backend |
+| Integration Service (MCP) | High | 320 | 2 Backend |
+| Simple Workflow Engine | Medium | 120 | 1 Backend |
+| Advanced Workflow Engine | High | 160 | 1 Backend |
+| Learning Engine | Medium | 160 | 1 AI/Backend |
+| SLA Monitor | Low | 60 | 1 Backend |
 
 ### Infrastructure Setup
 
 | Task | Complexity | Estimated Hours |
 |------|-----------|-----------------|
-| Environment Setup | Medium | 80 |
-| Container Orchestration | High | 120 |
-| CI/CD Pipeline | Medium | 80 |
-| Monitoring & Logging | Medium | 60 |
-| Security Configuration | High | 100 |
-| Load Testing | Medium | 60 |
+| Environment Setup | Medium | 60 |
+| Container Orchestration | High | 40 |
+| CI/CD Pipeline | Medium | 20 |
+| Monitoring & Logging | Medium | 40 |
+| Security Configuration | High | 40 |
+| Testing | Medium | 80 |
 
 ## Visual Diagram
 
